@@ -244,12 +244,14 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\API\CustomersController.cs" />
     <Compile Include="Controllers\API\MoviesController.cs" />
+    <Compile Include="Controllers\API\SongsRental.cs" />
     <Compile Include="Controllers\API\NewRentalsController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
     <Compile Include="Controllers\RentalsController.cs" />
+    <Compile Include="Controllers\SongsController.cs" />
     <Compile Include="Dtos\CustomerDto.cs" />
     <Compile Include="Dtos\GenreDto.cs" />
     <Compile Include="Dtos\MembershipTypeDto.cs" />
@@ -407,6 +409,18 @@
     <Compile Include="Migrations\202103211204120_AddNumberAvailableInMovie.Designer.cs">
       <DependentUpon>202103211204120_AddNumberAvailableInMovie.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202104211956597_SongsAdded.cs" />
+    <Compile Include="Migrations\202104211956597_SongsAdded.Designer.cs">
+      <DependentUpon>202104211956597_SongsAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202104212237564_SongsRental.cs" />
+    <Compile Include="Migrations\202104212237564_SongsRental.Designer.cs">
+      <DependentUpon>202104212237564_SongsRental.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202104212252234_RentalsAdded.cs" />
+    <Compile Include="Migrations\202104212252234_RentalsAdded.Designer.cs">
+      <DependentUpon>202104212252234_RentalsAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -418,12 +432,15 @@
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Models\Rental.cs" />
     <Compile Include="Models\RoleName.cs" />
+    <Compile Include="Models\Song.cs" />
+    <Compile Include="Models\SongsRental.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\CustomerFormViewModel.cs" />
     <Compile Include="ViewModels\ExternalLoginConfirmationViewModel.cs" />
     <Compile Include="ViewModels\MovieFormViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
+    <Compile Include="ViewModels\SongsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Readme\Elmah.txt" />
@@ -679,7 +696,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Navbar.cshtml" />
-    <Content Include="Views\Customers\Index.cshtml" />
+    <Content Include="Views\Customers\List.cshtml" />
     <Content Include="Views\Customers\Details.cshtml" />
     <Content Include="Views\Movies\List.cshtml" />
     <Content Include="Views\Movies\Details.cshtml" />
@@ -687,6 +704,13 @@
     <Content Include="Views\Movies\New.cshtml" />
     <Content Include="Views\Movies\ReadOnlyList.cshtml" />
     <Content Include="Views\Rentals\New.cshtml" />
+    <Content Include="Views\Customers\ReadOnlyList.cshtml" />
+    <Content Include="Views\Songs\Index.cshtml" />
+    <Content Include="Views\Songs\Create.cshtml" />
+    <Content Include="Views\Songs\Edit.cshtml" />
+    <Content Include="Views\Songs\List.cshtml" />
+    <Content Include="Views\Songs\ReadOnlyList.cshtml" />
+    <Content Include="Views\Rentals\NewSongsRental.cshtml" />
     <None Include="Web.Testing.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -813,6 +837,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202103211204120_AddNumberAvailableInMovie.resx">
       <DependentUpon>202103211204120_AddNumberAvailableInMovie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104211956597_SongsAdded.resx">
+      <DependentUpon>202104211956597_SongsAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104212237564_SongsRental.resx">
+      <DependentUpon>202104212237564_SongsRental.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104212252234_RentalsAdded.resx">
+      <DependentUpon>202104212252234_RentalsAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

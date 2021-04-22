@@ -38,14 +38,14 @@ namespace Widly.Controllers
         }
 
         // GET: Movies
-        public ActionResult Index()
+        public ViewResult Index()
         {
             if (User.IsInRole(RoleName.CanManageMovies))
-            {
                 return View("List");
-            }
+
             return View("ReadOnlyList");
         }
+
 
         public ActionResult Details(int id)
         {
@@ -55,6 +55,7 @@ namespace Widly.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult Save(Movie movie)
         {
             if (!ModelState.IsValid)

@@ -1,0 +1,102 @@
+﻿@model Widly.ViewModels.SongsViewModel
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>List</h2>
+
+<p>
+    @Html.ActionLink("New Song", "Create", "Songs", null, new { @class = "btn btn-primary" })
+</p>
+<table id="songs" class="songs table table-bordered table-hover">
+    <thead>
+    <tr>
+        <th>Song Name</th>
+        <th>Song Album</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var song in Model.Songs)
+    {
+        <tr>
+            <td>@song.Name</td>
+            <td>@song.Album</td>
+            <td>
+                <button class="editBtn" data-id="@song.ID" type="button">Edit</button>
+                <button class="deleteBtn" data-id="@song.ID" type="button">Delete</button>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+<div class="editContainer">
+    
+</div>
+@section scripts
+{
+    <script>
+        jQuery(document).ready(function() {
+            jQuery("#songs").DataTable();
+
+            jQuery(".editBtn").on("click",
+                function() {
+                    jQuery.ajax({
+                            url: '/Songs/Edit/',
+                            data: {
+                                Id: jQuery(this).attr('data-id')
+                            }
+
+                        })
+                        .done(function(response) {
+                            //$(".tableContainer").html(response);
+                            jQuery(".editContainer").html(response);
+                            //focusAction("tableContainer");
+
+                        })
+                        .fail(function(XMLHttpRequest, textStatus, errorThrown) {
+                            alert("FAIL");
+                        });
+                });
+
+            jQuery(".deleteBtn").on("click",
+                function(e) {
+                    e.preventDefault();
+                    Swal.fire({
+                        title: 'Are you sure?',
+                        text: "You won't be able to revert this!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Yes, delete it!'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            jQuery.ajax({
+                                    type: 'POST',
+                                    url: '@Url.Action("Delete", "Songs")',
+                                    data: {
+                                        Id: jQuery(this).attr('data-id')
+                                    }
+                                })
+                                .done(function(response) {
+                                    jQuery(".").html(response);
+
+                                    Swal.fire(
+                                        'Deleted!',
+                                        'Your file has been deleted.',
+                                        'success'
+                                    )
+
+                                })
+                                .fail(function(XMLHttpRequest, textStatus, errorThrown) {
+                                    alert("FAIL");
+                                });
+
+                        }
+                    });
+                });
+        });
+    </script>
+}

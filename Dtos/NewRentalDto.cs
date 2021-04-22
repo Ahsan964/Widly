@@ -9,5 +9,6 @@ namespace Widly.Dtos
     {
         public int CustomerId { get; set; }
         public List<int?> MovieIds { get; set; }
+        public List<int> SongIds { get; set; }
     }
 }

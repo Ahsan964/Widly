@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create Songs</h2>
+<div>
+    <form id="songsForm">
+        <label>Name</label>
+        <input type="text" name="Name"/>
+        <br/>
+        
+        <label>Movie</label>
+        <input type="text" name="Album"/>
+        <br/>
+
+        <button class="saveBtn" type="button">Save</button>
+    </form>
+</div>
+
+@section scripts
+{
+    <script>
+        jQuery(document).ready(function() {
+            jQuery(".saveBtn").click(function (e) {
+
+                jQuery.ajax({
+                        type: 'POST',
+                        url: '/Songs/Create',
+                        data: jQuery("#songsForm").serialize()
+                    })
+                    .done(function (response) {
+                        jQuery("").html(response);
+                        alert("Done");
+                    })
+                    .fail(function () {
+                        alert("Fail");
+                    });
+            });
+        });
+    </script>
+}

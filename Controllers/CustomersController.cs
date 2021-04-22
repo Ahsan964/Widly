@@ -24,6 +24,7 @@ namespace Widly.Controllers
             _context.Dispose();
         }
 
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult New()
         {
             var membershipTypes = _context.MembershipTypes.ToList();
@@ -70,7 +71,11 @@ namespace Widly.Controllers
         // GET: Customers
         public ActionResult Index()
         {
-             return View();
+            if (User.IsInRole(RoleName.CanManageMovies))
+            {
+                return View("List");
+            }
+            return View("ReadOnlyList");
         }
 
         public ActionResult Details(int id)

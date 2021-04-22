@@ -131,3 +131,7 @@ C:\Users\Ahsan\documents\visual studio 2015\Projects\Widly\Widly\bin\Glimpse.EF6
 C:\Users\Ahsan\documents\visual studio 2015\Projects\Widly\Widly\bin\Glimpse.Mvc5.dll
 C:\Users\Ahsan\documents\visual studio 2015\Projects\Widly\Widly\obj\Debug\Widly.Migrations.AddRental.resources
 C:\Users\Ahsan\documents\visual studio 2015\Projects\Widly\Widly\obj\Debug\Widly.Migrations.AddNumberAvailableInMovie.resources
+C:\Users\Ahsan\documents\visual studio 2015\Projects\Widly\Widly\bin\Elmah.dll
+C:\Users\Ahsan\documents\visual studio 2015\Projects\Widly\Widly\obj\Debug\Widly.Migrations.SongsAdded.resources
+C:\Users\Ahsan\documents\visual studio 2015\Projects\Widly\Widly\obj\Debug\Widly.Migrations.SongsRental.resources
+C:\Users\Ahsan\documents\visual studio 2015\Projects\Widly\Widly\obj\Debug\Widly.Migrations.RentalsAdded.resources

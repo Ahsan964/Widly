@@ -19,13 +19,12 @@ namespace Widly.App_Start
             Mapper.CreateMap<Genre, GenreDto>();
 
 
-            //Dto To Domain
+            // Dto to Domain
             Mapper.CreateMap<CustomerDto, Customer>()
-                .ForMember(m => m.Id, opt => opt.Ignore());
+                .ForMember(c => c.Id, opt => opt.Ignore());
 
             Mapper.CreateMap<MovieDto, Movie>()
-                .ForMember(m => m.Id, opt => opt.Ignore());
-
+                .ForMember(c => c.Id, opt => opt.Ignore());
         }
     }
 }

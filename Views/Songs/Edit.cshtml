@@ -1,0 +1,46 @@
+﻿@model Widly.Models.Song
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+<div>
+    <form id="songsForm" class="songs-form">
+        <input type="hidden" name="Id" value="@Model.ID"/>
+        <label>Name</label>
+        <input type="text" name="Name" value="@Model.Name"/>
+        <br />
+
+        <label>Movie</label>
+        <input type="text" name="Album" value="@Model.Album"/>
+        <br />
+
+        <button class="updateBtn" type="button">Update</button>
+    </form>
+</div>
+
+@section scripts
+{
+    <script>
+        //Update button
+        $(".updateBtn").on("click",
+            function () {
+                $.ajax({
+                        type: 'POST',
+                        url: '@Url.Action("Edit", "Songs")',
+                    data: $(".songs-form").serialize()
+                    })
+                    .done(function (response) {
+                        jQuery("#").html(response);
+                        jQuery("#songsForm").html("");
+                        alert("Refresh Your Page");
+                        //focusAction("tableContainer");
+                        
+                    })
+                    .fail(function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert("FAIL");
+                    });
+            });
+    </script>
+}

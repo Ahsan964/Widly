@@ -13,5 +13,12 @@ namespace Widly.Controllers
         {
             return View();
         }
+
+        // Get Songs Rental
+        public ActionResult NewSongsRental()
+        {
+            return View();
+        }
+
     }
 }

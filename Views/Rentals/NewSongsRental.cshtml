@@ -1,0 +1,88 @@
+﻿
+@{
+    ViewBag.Title = "NewSongsRental";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>NewSongsRental</h2>
+
+<form id="newRental">
+    <div class="form-group">
+        <label>Customer</label>
+        <div class="tt-container">
+            <input id="customer" name="customer" data-rule-validCustomer="true" required type="text" value="" class="customer form-control" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Song</label>
+        <div class="tt-container">
+            <input id="song" name="song" data-rule-atLeastOneMovie="true" type="text" value="" class="form-control" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 col-sm-4">
+            <ul id="songs" class="list-group"></ul>
+        </div>
+    </div>
+
+    <button class="btn btn-primary">Submit</button>
+</form>
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            var vm = {
+                songIds: []
+            };
+            var customers = new Bloodhound({
+                datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+                queryTokenizer: Bloodhound.tokenizers.whitespace,
+                remote: {
+                    url: '/api/customers?query=%QUERY',
+                    wildcard: '%QUERY'
+                }
+            });
+            $('.customer').typeahead({
+                minLength: 3,
+                highlight: true
+            }, {
+                name: 'customers',
+                display: 'name',
+                source: customers
+            }).on("typeahead:select", function(e, customer) {
+                vm.customerId = customer.id;
+            });
+            
+            $.validator.addMethod("validCustomer", function () {
+                return vm.customerId && vm.customerId !== 0;
+            }, "Please select a valid customer.");
+            $.validator.addMethod("atLeastOneSong", function () {
+                return vm.songIds.length > 0;
+            }, "Please select at least one Song.");
+            var validator = $("#newRental").validate({
+                submitHandler: function () {
+                    $.ajax({
+                        url: "",
+                        method: "post",
+                        data: vm
+                    })
+                    .done(function () {
+                        toastr.success("Rentals successfully recorded.");
+                        $("#customer").typeahead("val", "");
+                        
+                        $("#songs").empty();
+                        vm = { songIds: [] };
+                        validator.resetForm();
+                    })
+                    .fail(function () {
+                        toastr.error("Something unexpected happened.");
+                    });
+                    return false;
+                }
+            });
+        });
+    </script>
+}

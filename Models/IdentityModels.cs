@@ -34,6 +34,8 @@ namespace Widly.Models
         public DbSet<Genre> Genres { get; set; }
         public DbSet<MembershipType> MembershipTypes { get; set; }
         public DbSet<Rental> Rentals { get; set; }
+        public DbSet<SongsRental> SongsRentals { get; set; }
+        public DbSet<Song> Songs { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

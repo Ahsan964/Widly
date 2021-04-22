@@ -1,0 +1,26 @@
+﻿@model Widly.ViewModels.SongsViewModel
+@{
+    ViewBag.Title = "ReadOnlyList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Available Songs</h2>
+<table  class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Song Name</th>
+            <th>Song Album</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var song in Model.Songs)
+        {
+            <tr>
+                <td>@song.Name</td>
+                <td>@song.Album</td>
+                
+            </tr>
+        }
+    </tbody>
+</table>

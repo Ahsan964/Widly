@@ -16,6 +16,7 @@ namespace Widly.Models
         [Required]
         public Customer Customer { get; set; }
 
+        public Song Song { get; set; }
         public DateTime DateRented { get; set; }
         public DateTime? DateReturned { get; set; }
     }
